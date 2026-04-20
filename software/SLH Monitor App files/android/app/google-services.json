@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067382402867",
+    "project_id": "solar-home-lighting-1",
+    "storage_bucket": "solar-home-lighting-1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067382402867:android:85902642d8d4c88620d846",
+        "android_client_info": {
+          "package_name": "com.example.solar_home_lighting_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgSkrLrTaDiQ1wu-b71shYqSTV69_YokA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
