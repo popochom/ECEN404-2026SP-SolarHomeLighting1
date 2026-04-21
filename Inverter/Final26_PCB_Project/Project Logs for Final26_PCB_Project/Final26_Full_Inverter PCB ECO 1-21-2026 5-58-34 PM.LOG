@@ -1,0 +1,11 @@
+Change Component Comment : Designator=L_1 Old Comment=RLB0914-101KL - place holder  New Comment=RLB0914-101KL - place holder
+Added Pin To Net: NetName=GND Pin=J3-2
+Added Pin To Net: NetName=GND Pin=J_CTRL-6
+Added Pin To Net: NetName=GND Pin=J_CTRL-7
+Added Pin To Net: NetName=GND Pin=R_VFO-1
+Added Pin To Net: NetName=GND Pin=U1_B-1
+Added Pin To Net: NetName=GND Pin=U1_B-2
+Added Pin To Net: NetName=GND Pin=U1_I-11
+Added Pin To Net: NetName=GND Pin=U1_I-14
+Change Class Name : Old Net Name=New_Boost_Converter New Net Name=Final26_Boost_Converter
+Change Class Name : Old Net Name=New_Inverter New Net Name=Final26_Inverter
