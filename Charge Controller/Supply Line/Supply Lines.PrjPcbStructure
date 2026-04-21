@@ -1,0 +1,3 @@
+Record=TopLevelDocument|FileName=Supply Lines.SchDoc|SheetNumber=1
+Record=SheetSymbol|SourceDocument=Supply Lines.SchDoc|Designator=U1|SchDesignator=U1|FileName=5VSupply_3.5A.SchDoc|SheetNumber=2|SymbolType=Normal|RawFileName=5VSupply_3.5A.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=Supply Lines.SchDoc|Designator=U2|SchDesignator=U2|FileName=12VSupply_1.5A.SchDoc|SheetNumber=3|SymbolType=Normal|RawFileName=12VSupply_1.5A.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 

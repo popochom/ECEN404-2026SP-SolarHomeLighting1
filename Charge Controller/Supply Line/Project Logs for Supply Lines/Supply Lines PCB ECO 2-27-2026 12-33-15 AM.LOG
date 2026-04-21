@@ -1,0 +1,6 @@
+Change Physical Footprint: Designator=Arduino Conn Old Footprint=PHOENIX_1902547 New Footprint=PHOENIX_1902547
+Change Physical Footprint: Designator=Battery Conn Old Footprint=PHOENIX_1902547 New Footprint=PHOENIX_1902547
+Change Physical Footprint: Designator=Fan Conn Old Footprint=1935776 New Footprint=1935776
+Change Physical Footprint: Designator=Inverter Conn Old Footprint=PHOENIX_1902547 New Footprint=PHOENIX_1902547
+Change Physical Footprint: Designator=Microcontroller Conn Old Footprint=PHOENIX_1902547 New Footprint=PHOENIX_1902547
+Change Physical Footprint: Designator=PI Conn Old Footprint=PHOENIX_1902547 New Footprint=PHOENIX_1902547
