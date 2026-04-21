@@ -1,0 +1,16 @@
+Change Component Footprint: Designator=J_AC Old Footprint=PHOENIX_1904147 New Footprint=CONN_1902547_PXC
+Change Component Footprint: Designator=J_DC Old Footprint=PHOENIX_1904147 New Footprint=CONN_1902547_PXC
+Change Component Comment : Designator=J_AC Old Comment=1904147 New Comment=1902547
+Change Component Comment : Designator=J_DC Old Comment=1904147 New Comment=1902547
+Change component parameters: Designator = "J_AC" ("J_AC"); Footprint = "PHOENIX_1904147"; UniqueID = "\XSXWJZOL" ("\XSXWJZOL")
+Change component parameters (AddParameter): Name = "Copyright"; Value = "Copyright (C) 2025 Ultra Librarian. All rights reserved."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Phoenix Contact"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "1902547"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
+Change component parameters: Designator = "J_DC" ("J_DC"); Footprint = "PHOENIX_1904147"; UniqueID = "\EQOFYZTK" ("\EQOFYZTK")
+Change component parameters (AddParameter): Name = "Copyright"; Value = "Copyright (C) 2025 Ultra Librarian. All rights reserved."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Phoenix Contact"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "1902547"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
