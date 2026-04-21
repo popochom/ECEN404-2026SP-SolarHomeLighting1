@@ -1,0 +1,701 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1/26/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2:51:23 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc" class="file"><acronym title="C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc">C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">119</td></tr>
+</table>
+</td>
+</table><a name="IDA0GOKNQERRJ1PNU3IXVLXWCWYBMGJTY3DGCLAGBPDQ5PQMNQCZ4P"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWURQED141LVCNGJ5UVILRRTNQEYA0CNXGSEYMXHFHNN10PKVY1ZD">Clearance Constraint (Gap=5mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFOQRBZXFUAZQFMR2RA501T4JWEX3NOKJPLY0CGK4FJTCJQQLYPWD">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWV4F5ROZBOERJ1RJAINM13XGQEUPZCA2AGQOA5OMUTJS2NZRH5OB">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIZ3ELX2BGJRCCIQX5XKFY00SGFKVKLRZ525QOGRR14RFWWFRKK">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHTBVGBONGZ2GEQQ0YJOZAXFQBMFXC3PHJOM302D3UBIOJJTX4ZYG">Width Constraint (Min=5mil) (Max=1000mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJS4XLGPLVU4QPWF24IPMHLLLNNQU4WXZRM1GGWD0HEOTA0BE3JUC">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQHKFTVOXOGRDJR32OTZXVEQDUK3E4ET25JKTCPFJ0T1LRMMP2NKG">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDABDAB50GM4HRNSWI0KR2Y2ZI2BPBMYGUSK1XHTIBHWATXXLSC5M">Hole Size Constraint (Min=10mil) (Max=250mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3MQR4KSCCDIFNUMT5OGE4XAJPKGN5NRZSUFLTHDYLDTZHDU3T5HN">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSDJ02TN0SNVZGF42NU0UAXZEZKC3RHVRUIDU5ML5010SAQMYVVIF">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">19</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPW5PECYSLNY1CPZ3RRZO5EG5QJWIPCZIK3BKOENFM4JJOXV5K3IJ">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">84</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTMC2JILHYTD1NIIDRHB2BXMVFXL0VFZWT3UA2J41VWSRJI15EWC">Silk to Silk (Clearance=5mil) (All),(All)</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJVL4RKXFI0IREI4R2RO2VTWGRK0BFUUA2RPY2BBUPTK0QGVU5BE">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPNI1ZBYV2ML0PBREUPN3VFWK2LNLLNPNDFADS5DFGTP3Q0QPSLTB">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">119</td>
+</tr>
+</table><br><a name="IDWV4F5ROZBOERJ1RJAINM13XGQEUPZCA2AGQOA5OMUTJS2NZRH5OB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=1484.927mil|Location1.Y=4715.073mil|Location2.Y=4979.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=1484.927mil|Location1.Y=4715.073mil|Location2.Y=4979.903mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on PWR Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=6979.903mil|Location1.Y=1020.097mil|Location2.Y=4979.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=6979.903mil|Location1.Y=1020.097mil|Location2.Y=4979.903mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on PWR Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=1384.927mil|Location1.Y=1020.097mil|Location2.Y=1344.927mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1020.097mil|Location2.X=1384.927mil|Location1.Y=1020.097mil|Location2.Y=1344.927mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on PWR Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6655.586mil|Location2.X=6979.903mil|Location1.Y=4622.395mil|Location2.Y=4979.903mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6655.586mil|Location2.X=6979.903mil|Location1.Y=4622.395mil|Location2.Y=4979.903mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on PWR Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2465.073mil|Location2.X=2594.927mil|Location1.Y=2975.073mil|Location2.Y=3094.927mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2465.073mil|Location2.X=2594.927mil|Location1.Y=2975.073mil|Location2.Y=3094.927mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on PWR Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6705.073mil|Location2.X=6979.903mil|Location1.Y=1020.097mil|Location2.Y=1344.927mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6705.073mil|Location2.X=6979.903mil|Location1.Y=1020.097mil|Location2.Y=1344.927mil|Absolute=True">Un-Routed Net Constraint: Split Plane  (No Net) on PWR Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDSDJ02TN0SNVZGF42NU0UAXZEZKC3RHVRUIDU5ML5010SAQMYVVIF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2029.375mil|Location2.X=2040.625mil|Location1.Y=3889.863mil|Location2.Y=3901.113mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2029.375mil|Location2.X=2040.625mil|Location1.Y=3889.863mil|Location2.Y=3901.113mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad C1-1(1997.598mil,3930mil) on Top Layer And Pad C1-2(2072.401mil,3930mil) on Top Layer [Top Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.276mil|Location2.X=2010.526mil|Location1.Y=2595.858mil|Location2.Y=2607.108mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.276mil|Location2.X=2010.526mil|Location1.Y=2595.858mil|Location2.Y=2607.108mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad C'15-1(1967.5mil,2566.971mil) on Bottom Layer And Pad C'15-2(2042.303mil,2566.971mil) on Bottom Layer [Bottom Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5324.375mil|Location2.X=5335.625mil|Location1.Y=2528.887mil|Location2.Y=2540.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5324.375mil|Location2.X=5335.625mil|Location1.Y=2528.887mil|Location2.Y=2540.137mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad C20-1(5292.598mil,2500mil) on Bottom Layer And Pad C20-2(5367.401mil,2500mil) on Bottom Layer [Bottom Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3037.363mil|Location2.X=3048.613mil|Location1.Y=2471.346mil|Location2.Y=2482.596mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3037.363mil|Location2.X=3048.613mil|Location1.Y=2471.346mil|Location2.Y=2482.596mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad C'5-1(3077.5mil,2439.569mil) on Bottom Layer And Pad C'5-2(3077.5mil,2514.372mil) on Bottom Layer [Bottom Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3106.387mil|Location2.X=3117.637mil|Location1.Y=1711.346mil|Location2.Y=1722.596mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3106.387mil|Location2.X=3117.637mil|Location1.Y=1711.346mil|Location2.Y=1722.596mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad C'6-1(3077.5mil,1754.372mil) on Bottom Layer And Pad C'6-2(3077.5mil,1679.569mil) on Bottom Layer [Bottom Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.375mil|Location2.X=3250.625mil|Location1.Y=3343.887mil|Location2.Y=3355.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.375mil|Location2.X=3250.625mil|Location1.Y=3343.887mil|Location2.Y=3355.137mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad C6-1(3282.402mil,3315mil) on Top Layer And Pad C6-2(3207.599mil,3315mil) on Top Layer [Top Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4384.375mil|Location2.X=4395.625mil|Location1.Y=1669.863mil|Location2.Y=1681.113mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4384.375mil|Location2.X=4395.625mil|Location1.Y=1669.863mil|Location2.Y=1681.113mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.716mil &lt; 10mil) Between Pad CA1-1(4352.598mil,1710mil) on Top Layer And Pad CA1-2(4427.401mil,1710mil) on Top Layer [Top Solder] Mask Sliver [9.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2911.875mil|Location2.X=2923.125mil|Location1.Y=2023.413mil|Location2.Y=2034.663mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2911.875mil|Location2.X=2923.125mil|Location1.Y=2023.413mil|Location2.Y=2034.663mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.134mil &lt; 10mil) Between Pad D'4-A(2938.76mil,2106.971mil) on Top Layer And Via (2917.5mil,1996.971mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [6.134mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3501.875mil|Location2.X=3513.125mil|Location1.Y=1922.242mil|Location2.Y=1933.492mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3501.875mil|Location2.X=3513.125mil|Location1.Y=1922.242mil|Location2.Y=1933.492mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.209mil &lt; 10mil) Between Pad Q2-1(3512.5mil,1893.743mil) on Bottom Layer And Via (3507.5mil,1956.971mil) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.209mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.375mil|Location2.X=3850.625mil|Location1.Y=4513.351mil|Location2.Y=4524.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.375mil|Location2.X=3850.625mil|Location1.Y=4513.351mil|Location2.Y=4524.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.047mil &lt; 10mil) Between Pad U5-5(3845mil,4488.346mil) on Top Layer And Via (3845mil,4550mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4.047mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2974.375mil|Location2.X=2985.625mil|Location1.Y=4513.351mil|Location2.Y=4524.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2974.375mil|Location2.X=2985.625mil|Location1.Y=4513.351mil|Location2.Y=4524.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.047mil &lt; 10mil) Between Pad U6-5(2980mil,4488.346mil) on Top Layer And Via (2980mil,4550mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4.047mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5216.166mil|Location2.X=5227.416mil|Location1.Y=2528.903mil|Location2.Y=2540.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5216.166mil|Location2.X=5227.416mil|Location1.Y=2528.903mil|Location2.Y=2540.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-1(5248.386mil,2544.37mil) on Top Layer And Pad U9-2(5248.386mil,2524.685mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5442.584mil|Location2.X=5453.834mil|Location1.Y=2528.903mil|Location2.Y=2540.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5442.584mil|Location2.X=5453.834mil|Location1.Y=2528.903mil|Location2.Y=2540.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-10(5421.614mil,2544.37mil) on Top Layer And Pad U9-9(5421.614mil,2524.685mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5269.355mil|Location2.X=5280.605mil|Location1.Y=2509.218mil|Location2.Y=2520.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5269.355mil|Location2.X=5280.605mil|Location1.Y=2509.218mil|Location2.Y=2520.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-2(5248.386mil,2524.685mil) on Top Layer And Pad U9-3(5248.386mil,2505mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5216.166mil|Location2.X=5227.416mil|Location1.Y=2489.532mil|Location2.Y=2500.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5216.166mil|Location2.X=5227.416mil|Location1.Y=2489.532mil|Location2.Y=2500.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-3(5248.386mil,2505mil) on Top Layer And Pad U9-4(5248.386mil,2485.315mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5216.166mil|Location2.X=5227.416mil|Location1.Y=2469.847mil|Location2.Y=2481.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5216.166mil|Location2.X=5227.416mil|Location1.Y=2469.847mil|Location2.Y=2481.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-4(5248.386mil,2485.315mil) on Top Layer And Pad U9-5(5248.386mil,2465.63mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.395mil|Location2.X=5400.645mil|Location1.Y=2469.847mil|Location2.Y=2481.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.395mil|Location2.X=5400.645mil|Location1.Y=2469.847mil|Location2.Y=2481.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-6(5421.614mil,2465.63mil) on Top Layer And Pad U9-7(5421.614mil,2485.315mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.395mil|Location2.X=5400.645mil|Location1.Y=2489.532mil|Location2.Y=2500.782mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.395mil|Location2.X=5400.645mil|Location1.Y=2489.532mil|Location2.Y=2500.782mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-7(5421.614mil,2485.315mil) on Top Layer And Pad U9-8(5421.614mil,2505mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.395mil|Location2.X=5400.645mil|Location1.Y=2509.218mil|Location2.Y=2520.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.395mil|Location2.X=5400.645mil|Location1.Y=2509.218mil|Location2.Y=2520.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.874mil &lt; 10mil) Between Pad U9-8(5421.614mil,2505mil) on Top Layer And Pad U9-9(5421.614mil,2524.685mil) on Top Layer [Top Solder] Mask Sliver [7.874mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDPW5PECYSLNY1CPZ3RRZO5EG5QJWIPCZIK3BKOENFM4JJOXV5K3IJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.134mil|Location2.X=3118.384mil|Location1.Y=2441.356mil|Location2.Y=2452.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.134mil|Location2.X=3118.384mil|Location1.Y=2441.356mil|Location2.Y=2452.606mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.494mil &lt; 10mil) Between Pad C'5-1(3077.5mil,2439.569mil) on Bottom Layer And Text "C'5" (3120.006mil,2441.982mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.494mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.134mil|Location2.X=3118.384mil|Location1.Y=2501.336mil|Location2.Y=2512.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.134mil|Location2.X=3118.384mil|Location1.Y=2501.336mil|Location2.Y=2512.586mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.494mil &lt; 10mil) Between Pad C'5-2(3077.5mil,2514.372mil) on Bottom Layer And Text "C'5" (3120.006mil,2441.982mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.494mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4180.582mil|Location2.X=4191.832mil|Location1.Y=4419.364mil|Location2.Y=4430.614mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4180.582mil|Location2.X=4191.832mil|Location1.Y=4419.364mil|Location2.Y=4430.614mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.428mil &lt; 10mil) Between Pad C5op-2(4210mil,4424.882mil) on Top Layer And Text "C5op" (4169.997mil,4335.018mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.428mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.082mil|Location2.X=3324.332mil|Location1.Y=4409.364mil|Location2.Y=4420.614mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.082mil|Location2.X=3324.332mil|Location1.Y=4409.364mil|Location2.Y=4420.614mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.428mil &lt; 10mil) Between Pad C6op-2(3340mil,4414.882mil) on Top Layer And Text "C6op" (3304.997mil,4325.018mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.428mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.873mil|Location2.X=2183.123mil|Location1.Y=2223.925mil|Location2.Y=2235.175mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2171.873mil|Location2.X=2183.123mil|Location1.Y=2223.925mil|Location2.Y=2235.175mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.922mil &lt; 10mil) Between Pad C'7-1(2162.964mil,2196.971mil) on Bottom Layer And Text "C'7" (2152.506mil,2235.011mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [5.922mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2398.02mil|Location2.X=2409.27mil|Location1.Y=2417.33mil|Location2.Y=2428.58mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2398.02mil|Location2.X=2409.27mil|Location1.Y=2417.33mil|Location2.Y=2428.58mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.722mil &lt; 10mil) Between Pad D'5-1(2381.87mil,2446.971mil) on Bottom Layer And Text "D'5" (2410.006mil,2411.982mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.722mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=4182.958mil|Location2.Y=4194.208mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=4182.958mil|Location2.Y=4194.208mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.75mil &lt; 10mil) Between Pad F1-1(1790mil,4188.583mil) on Multi-Layer And Track (1711.26mil,4137.402mil)(1711.26mil,4566.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.75mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1775.162mil|Location2.X=1782.829mil|Location1.Y=4129.631mil|Location2.Y=4137.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1775.162mil|Location2.X=1782.829mil|Location1.Y=4129.631mil|Location2.Y=4137.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad F1-1(1790mil,4188.583mil) on Multi-Layer And Track (1715.197mil,4133.465mil)(1864.803mil,4133.465mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=4182.958mil|Location2.Y=4194.208mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=4182.958mil|Location2.Y=4194.208mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.813mil &lt; 10mil) Between Pad F1-1(1790mil,4188.583mil) on Multi-Layer And Track (1864.803mil,4133.465mil)(1864.803mil,4566.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.813mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=4505.792mil|Location2.Y=4517.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=4505.792mil|Location2.Y=4517.042mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.75mil &lt; 10mil) Between Pad F1-2(1790mil,4511.417mil) on Multi-Layer And Track (1711.26mil,4137.402mil)(1711.26mil,4566.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.75mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.486mil|Location2.X=1759.152mil|Location1.Y=4562.702mil|Location2.Y=4570.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.486mil|Location2.X=1759.152mil|Location1.Y=4562.702mil|Location2.Y=4570.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad F1-2(1790mil,4511.417mil) on Multi-Layer And Track (1711.26mil,4566.535mil)(1864.803mil,4566.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=4505.792mil|Location2.Y=4517.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=4505.792mil|Location2.Y=4517.042mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.813mil &lt; 10mil) Between Pad F1-2(1790mil,4511.417mil) on Multi-Layer And Track (1864.803mil,4133.465mil)(1864.803mil,4566.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.813mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=3382.958mil|Location2.Y=3394.208mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=3382.958mil|Location2.Y=3394.208mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.75mil &lt; 10mil) Between Pad F2-1(1790mil,3388.583mil) on Multi-Layer And Track (1711.26mil,3337.402mil)(1711.26mil,3766.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.75mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1775.162mil|Location2.X=1782.829mil|Location1.Y=3329.631mil|Location2.Y=3337.298mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1775.162mil|Location2.X=1782.829mil|Location1.Y=3329.631mil|Location2.Y=3337.298mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad F2-1(1790mil,3388.583mil) on Multi-Layer And Track (1715.197mil,3333.465mil)(1864.803mil,3333.465mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=3382.958mil|Location2.Y=3394.208mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=3382.958mil|Location2.Y=3394.208mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.813mil &lt; 10mil) Between Pad F2-1(1790mil,3388.583mil) on Multi-Layer And Track (1864.803mil,3333.465mil)(1864.803mil,3766.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.813mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=3705.792mil|Location2.Y=3717.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1715.01mil|Location2.X=1726.26mil|Location1.Y=3705.792mil|Location2.Y=3717.042mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.75mil &lt; 10mil) Between Pad F2-2(1790mil,3711.417mil) on Multi-Layer And Track (1711.26mil,3337.402mil)(1711.26mil,3766.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.75mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.486mil|Location2.X=1759.152mil|Location1.Y=3762.702mil|Location2.Y=3770.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.486mil|Location2.X=1759.152mil|Location1.Y=3762.702mil|Location2.Y=3770.369mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad F2-2(1790mil,3711.417mil) on Multi-Layer And Track (1711.26mil,3766.535mil)(1864.803mil,3766.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=3705.792mil|Location2.Y=3717.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1851.772mil|Location2.X=1863.022mil|Location1.Y=3705.792mil|Location2.Y=3717.042mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.813mil &lt; 10mil) Between Pad F2-2(1790mil,3711.417mil) on Multi-Layer And Track (1864.803mil,3333.465mil)(1864.803mil,3766.535mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.813mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.178mil|Location2.X=3670.428mil|Location1.Y=3568.076mil|Location2.Y=3579.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.178mil|Location2.X=3670.428mil|Location1.Y=3568.076mil|Location2.Y=3579.326mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.795mil &lt; 10mil) Between Pad L5-1(3737.599mil,3680mil) on Top Layer And Track (3655.905mil,3435.905mil)(3655.905mil,3924.095mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.795mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-1(3737.599mil,3680mil) on Top Layer And Track (3688.386mil,3581.575mil)(3688.386mil,3680mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-1(3737.599mil,3680mil) on Top Layer And Track (3688.386mil,3581.575mil)(4111.614mil,3581.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3676.167mil|Location2.Y=3683.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3676.167mil|Location2.Y=3683.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-1(3737.599mil,3680mil) on Top Layer And Track (3688.386mil,3680mil)(3688.386mil,3778.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3774.592mil|Location2.Y=3782.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.553mil|Location2.X=3692.219mil|Location1.Y=3774.592mil|Location2.Y=3782.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-1(3737.599mil,3680mil) on Top Layer And Track (3688.386mil,3778.425mil)(4111.614mil,3778.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3989.671mil|Location2.X=3997.337mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3989.671mil|Location2.X=3997.337mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-2(4062.402mil,3680mil) on Top Layer And Track (3688.386mil,3581.575mil)(4111.614mil,3581.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3989.671mil|Location2.X=3997.337mil|Location1.Y=3774.592mil|Location2.Y=3782.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3989.671mil|Location2.X=3997.337mil|Location1.Y=3774.592mil|Location2.Y=3782.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-2(4062.402mil,3680mil) on Top Layer And Track (3688.386mil,3778.425mil)(4111.614mil,3778.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4107.781mil|Location2.X=4115.448mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4107.781mil|Location2.X=4115.448mil|Location1.Y=3577.742mil|Location2.Y=3585.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L5-2(4062.402mil,3680mil) on Top Layer And Track (4111.614mil,3581.575mil)(4111.614mil,3778.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4127.603mil|Location2.X=4138.853mil|Location1.Y=3568.076mil|Location2.Y=3579.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4127.603mil|Location2.X=4138.853mil|Location1.Y=3568.076mil|Location2.Y=3579.326mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.858mil &lt; 10mil) Between Pad L5-2(4062.402mil,3680mil) on Top Layer And Track (4140.158mil,3435.905mil)(4140.158mil,3924.095mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-1(2870mil,3670mil) on Top Layer And Track (2820.787mil,3571.575mil)(2820.787mil,3670mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-1(2870mil,3670mil) on Top Layer And Track (2820.787mil,3571.575mil)(3244.016mil,3571.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3666.167mil|Location2.Y=3673.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3666.167mil|Location2.Y=3673.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-1(2870mil,3670mil) on Top Layer And Track (2820.787mil,3670mil)(2820.787mil,3768.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3764.592mil|Location2.Y=3772.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.954mil|Location2.X=2824.621mil|Location1.Y=3764.592mil|Location2.Y=3772.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-1(2870mil,3670mil) on Top Layer And Track (2820.787mil,3768.425mil)(3244.016mil,3768.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3133.883mil|Location2.X=3141.55mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3133.883mil|Location2.X=3141.55mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-2(3194.803mil,3670mil) on Top Layer And Track (2820.787mil,3571.575mil)(3244.016mil,3571.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3133.883mil|Location2.X=3141.55mil|Location1.Y=3764.592mil|Location2.Y=3772.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3133.883mil|Location2.X=3141.55mil|Location1.Y=3764.592mil|Location2.Y=3772.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-2(3194.803mil,3670mil) on Top Layer And Track (2820.787mil,3768.425mil)(3244.016mil,3768.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3240.182mil|Location2.X=3247.849mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3240.182mil|Location2.X=3247.849mil|Location1.Y=3567.742mil|Location2.Y=3575.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad L6-2(3194.803mil,3670mil) on Top Layer And Track (3244.016mil,3571.575mil)(3244.016mil,3768.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3633.095mil|Location2.X=3644.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3633.095mil|Location2.X=3644.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-1(3652.5mil,2300.199mil) on Bottom Layer And Track (3481.043mil,2343.979mil)(3673.957mil,2343.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3665.576mil|Location2.X=3676.826mil|Location1.Y=2264.555mil|Location2.Y=2275.805mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3665.576mil|Location2.X=3676.826mil|Location1.Y=2264.555mil|Location2.Y=2275.805mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.843mil &lt; 10mil) Between Pad Q1-1(3652.5mil,2300.199mil) on Bottom Layer And Track (3680.059mil,2270.16mil)(3680.059mil,2330.199mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3583.095mil|Location2.X=3594.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3583.095mil|Location2.X=3594.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-2(3602.5mil,2300.199mil) on Bottom Layer And Track (3481.043mil,2343.979mil)(3673.957mil,2343.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.095mil|Location2.X=3544.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.095mil|Location2.X=3544.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-3(3552.5mil,2300.199mil) on Bottom Layer And Track (3481.043mil,2343.979mil)(3673.957mil,2343.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3483.095mil|Location2.X=3494.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3483.095mil|Location2.X=3494.345mil|Location1.Y=2329.505mil|Location2.Y=2340.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-4(3502.5mil,2300.199mil) on Bottom Layer And Track (3481.043mil,2343.979mil)(3673.957mil,2343.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3510.655mil|Location2.X=3521.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3510.655mil|Location2.X=3521.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-5(3502.5mil,2513.743mil) on Bottom Layer And Track (3481.043mil,2469.963mil)(3673.957mil,2469.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3560.655mil|Location2.X=3571.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3560.655mil|Location2.X=3571.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-6(3552.5mil,2513.743mil) on Bottom Layer And Track (3481.043mil,2469.963mil)(3673.957mil,2469.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3610.655mil|Location2.X=3621.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3610.655mil|Location2.X=3621.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-7(3602.5mil,2513.743mil) on Bottom Layer And Track (3481.043mil,2469.963mil)(3673.957mil,2469.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3660.655mil|Location2.X=3671.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3660.655mil|Location2.X=3671.905mil|Location1.Y=2473.186mil|Location2.Y=2484.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q1-8(3652.5mil,2513.743mil) on Bottom Layer And Track (3481.043mil,2469.963mil)(3673.957mil,2469.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3488.174mil|Location2.X=3499.424mil|Location1.Y=1858.105mil|Location2.Y=1869.355mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3488.174mil|Location2.X=3499.424mil|Location1.Y=1858.105mil|Location2.Y=1869.355mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.843mil &lt; 10mil) Between Pad Q2-1(3512.5mil,1893.743mil) on Bottom Layer And Track (3484.941mil,1863.743mil)(3484.941mil,1923.782mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3520.655mil|Location2.X=3531.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3520.655mil|Location2.X=3531.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-1(3512.5mil,1893.743mil) on Bottom Layer And Track (3491.043mil,1849.963mil)(3683.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3570.655mil|Location2.X=3581.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3570.655mil|Location2.X=3581.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-2(3562.5mil,1893.743mil) on Bottom Layer And Track (3491.043mil,1849.963mil)(3683.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3620.655mil|Location2.X=3631.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3620.655mil|Location2.X=3631.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-3(3612.5mil,1893.743mil) on Bottom Layer And Track (3491.043mil,1849.963mil)(3683.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3670.655mil|Location2.X=3681.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3670.655mil|Location2.X=3681.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-4(3662.5mil,1893.743mil) on Bottom Layer And Track (3491.043mil,1849.963mil)(3683.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3643.095mil|Location2.X=3654.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3643.095mil|Location2.X=3654.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-5(3662.5mil,1680.199mil) on Bottom Layer And Track (3491.043mil,1723.979mil)(3683.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.095mil|Location2.X=3604.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.095mil|Location2.X=3604.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-6(3612.5mil,1680.199mil) on Bottom Layer And Track (3491.043mil,1723.979mil)(3683.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3543.095mil|Location2.X=3554.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3543.095mil|Location2.X=3554.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-7(3562.5mil,1680.199mil) on Bottom Layer And Track (3491.043mil,1723.979mil)(3683.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.095mil|Location2.X=3504.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.095mil|Location2.X=3504.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q2-8(3512.5mil,1680.199mil) on Bottom Layer And Track (3491.043mil,1723.979mil)(3683.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3351.412mil|Location2.X=3362.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3351.412mil|Location2.X=3362.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-1(3370.817mil,2297.912mil) on Bottom Layer And Track (3199.36mil,2341.691mil)(3392.273mil,2341.691mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3383.892mil|Location2.X=3395.142mil|Location1.Y=2262.267mil|Location2.Y=2273.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3383.892mil|Location2.X=3395.142mil|Location1.Y=2262.267mil|Location2.Y=2273.517mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.843mil &lt; 10mil) Between Pad Q3-1(3370.817mil,2297.912mil) on Bottom Layer And Track (3398.376mil,2267.872mil)(3398.376mil,2327.912mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3301.412mil|Location2.X=3312.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3301.412mil|Location2.X=3312.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-2(3320.817mil,2297.912mil) on Bottom Layer And Track (3199.36mil,2341.691mil)(3392.273mil,2341.691mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3251.412mil|Location2.X=3262.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3251.412mil|Location2.X=3262.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-3(3270.817mil,2297.912mil) on Bottom Layer And Track (3199.36mil,2341.691mil)(3392.273mil,2341.691mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3201.412mil|Location2.X=3212.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3201.412mil|Location2.X=3212.662mil|Location1.Y=2327.218mil|Location2.Y=2338.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-4(3220.817mil,2297.912mil) on Bottom Layer And Track (3199.36mil,2341.691mil)(3392.273mil,2341.691mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3228.971mil|Location2.X=3240.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3228.971mil|Location2.X=3240.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-5(3220.817mil,2511.455mil) on Bottom Layer And Track (3199.36mil,2467.675mil)(3392.273mil,2467.675mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3278.971mil|Location2.X=3290.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3278.971mil|Location2.X=3290.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-6(3270.817mil,2511.455mil) on Bottom Layer And Track (3199.36mil,2467.675mil)(3392.273mil,2467.675mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3328.971mil|Location2.X=3340.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3328.971mil|Location2.X=3340.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-7(3320.817mil,2511.455mil) on Bottom Layer And Track (3199.36mil,2467.675mil)(3392.273mil,2467.675mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3378.971mil|Location2.X=3390.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3378.971mil|Location2.X=3390.221mil|Location1.Y=2470.899mil|Location2.Y=2482.149mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q3-8(3370.817mil,2511.455mil) on Bottom Layer And Track (3199.36mil,2467.675mil)(3392.273mil,2467.675mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.174mil|Location2.X=3209.424mil|Location1.Y=1858.105mil|Location2.Y=1869.355mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3198.174mil|Location2.X=3209.424mil|Location1.Y=1858.105mil|Location2.Y=1869.355mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.843mil &lt; 10mil) Between Pad Q4-1(3222.5mil,1893.743mil) on Bottom Layer And Track (3194.941mil,1863.743mil)(3194.941mil,1923.782mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.655mil|Location2.X=3241.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3230.655mil|Location2.X=3241.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-1(3222.5mil,1893.743mil) on Bottom Layer And Track (3201.043mil,1849.963mil)(3393.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3280.655mil|Location2.X=3291.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3280.655mil|Location2.X=3291.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-2(3272.5mil,1893.743mil) on Bottom Layer And Track (3201.043mil,1849.963mil)(3393.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3330.655mil|Location2.X=3341.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3330.655mil|Location2.X=3341.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-3(3322.5mil,1893.743mil) on Bottom Layer And Track (3201.043mil,1849.963mil)(3393.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3380.655mil|Location2.X=3391.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3380.655mil|Location2.X=3391.905mil|Location1.Y=1853.186mil|Location2.Y=1864.436mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-4(3372.5mil,1893.743mil) on Bottom Layer And Track (3201.043mil,1849.963mil)(3393.957mil,1849.963mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3353.095mil|Location2.X=3364.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3353.095mil|Location2.X=3364.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-5(3372.5mil,1680.199mil) on Bottom Layer And Track (3201.043mil,1723.979mil)(3393.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3303.095mil|Location2.X=3314.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3303.095mil|Location2.X=3314.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-6(3322.5mil,1680.199mil) on Bottom Layer And Track (3201.043mil,1723.979mil)(3393.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.095mil|Location2.X=3264.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3253.095mil|Location2.X=3264.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-7(3272.5mil,1680.199mil) on Bottom Layer And Track (3201.043mil,1723.979mil)(3393.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3203.095mil|Location2.X=3214.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3203.095mil|Location2.X=3214.345mil|Location1.Y=1709.505mil|Location2.Y=1720.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.823mil &lt; 10mil) Between Pad Q4-8(3222.5mil,1680.199mil) on Bottom Layer And Track (3201.043mil,1723.979mil)(3393.957mil,1723.979mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [9.823mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2792.544mil|Location2.X=2803.794mil|Location1.Y=1968.708mil|Location2.Y=1979.958mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2792.544mil|Location2.X=2803.794mil|Location1.Y=1968.708mil|Location2.Y=1979.958mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R'1-1(2777.5mil,1996.971mil) on Bottom Layer And Track (2806.043mil,1974.333mil)(2813.917mil,1974.333mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2792.544mil|Location2.X=2803.794mil|Location1.Y=2013.984mil|Location2.Y=2025.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2792.544mil|Location2.X=2803.794mil|Location1.Y=2013.984mil|Location2.Y=2025.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R'1-1(2777.5mil,1996.971mil) on Bottom Layer And Track (2806.043mil,2019.609mil)(2813.917mil,2019.609mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1948.167mil|Location2.X=1955.833mil|Location1.Y=4150.541mil|Location2.Y=4158.207mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1948.167mil|Location2.X=1955.833mil|Location1.Y=4150.541mil|Location2.Y=4158.207mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad R1-2(1956.805mil,4190mil) on Top Layer And Text "R2" (1952mil,4133mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.166mil|Location2.X=2827.416mil|Location1.Y=1968.708mil|Location2.Y=1979.958mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.166mil|Location2.X=2827.416mil|Location1.Y=1968.708mil|Location2.Y=1979.958mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R'1-2(2842.461mil,1996.971mil) on Bottom Layer And Track (2806.043mil,1974.333mil)(2813.917mil,1974.333mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.166mil|Location2.X=2827.416mil|Location1.Y=2013.984mil|Location2.Y=2025.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2816.166mil|Location2.X=2827.416mil|Location1.Y=2013.984mil|Location2.Y=2025.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R'1-2(2842.461mil,1996.971mil) on Bottom Layer And Track (2806.043mil,2019.609mil)(2813.917mil,2019.609mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1970.16mil|Location2.X=1977.827mil|Location1.Y=4028.159mil|Location2.Y=4035.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1970.16mil|Location2.X=1977.827mil|Location1.Y=4028.159mil|Location2.Y=4035.825mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad R2-1(1996.572mil,4055mil) on Top Layer And Text "C1" (1954mil,4007mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4052.564mil|Location2.X=4063.814mil|Location1.Y=4467.8mil|Location2.Y=4479.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4052.564mil|Location2.X=4063.814mil|Location1.Y=4467.8mil|Location2.Y=4479.05mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R5top-1(4029.646mil,4500mil) on Bottom Layer And Track (4066.063mil,4473.425mil)(4073.937mil,4473.425mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4052.564mil|Location2.X=4063.814mil|Location1.Y=4520.95mil|Location2.Y=4532.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4052.564mil|Location2.X=4063.814mil|Location1.Y=4520.95mil|Location2.Y=4532.2mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R5top-1(4029.646mil,4500mil) on Bottom Layer And Track (4066.063mil,4526.575mil)(4073.937mil,4526.575mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4076.186mil|Location2.X=4087.436mil|Location1.Y=4467.8mil|Location2.Y=4479.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4076.186mil|Location2.X=4087.436mil|Location1.Y=4467.8mil|Location2.Y=4479.05mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R5top-2(4110.354mil,4500mil) on Bottom Layer And Track (4066.063mil,4473.425mil)(4073.937mil,4473.425mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4076.186mil|Location2.X=4087.436mil|Location1.Y=4520.95mil|Location2.Y=4532.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4076.186mil|Location2.X=4087.436mil|Location1.Y=4520.95mil|Location2.Y=4532.2mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R5top-2(4110.354mil,4500mil) on Bottom Layer And Track (4066.063mil,4526.575mil)(4073.937mil,4526.575mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4571.658mil|Location2.X=4582.908mil|Location1.Y=3590.379mil|Location2.Y=3601.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4571.658mil|Location2.X=4582.908mil|Location1.Y=3590.379mil|Location2.Y=3601.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.874mil &lt; 10mil) Between Pad U3-1(4560.551mil,3621.063mil) on Top Layer And Track (4336.142mil,3589.567mil)(4607.795mil,3589.567mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4390.556mil|Location2.X=4401.806mil|Location1.Y=3590.379mil|Location2.Y=3601.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4390.556mil|Location2.X=4401.806mil|Location1.Y=3590.379mil|Location2.Y=3601.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.874mil &lt; 10mil) Between Pad U3-2(4379.449mil,3621.063mil) on Top Layer And Track (4336.142mil,3589.567mil)(4607.795mil,3589.567mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4481.107mil|Location2.X=4492.357mil|Location1.Y=3590.379mil|Location2.Y=3601.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4481.107mil|Location2.X=4492.357mil|Location1.Y=3590.379mil|Location2.Y=3601.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.874mil &lt; 10mil) Between Pad U3-2(4470mil,3621.063mil) on Top Layer And Track (4336.142mil,3589.567mil)(4607.795mil,3589.567mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4401.383mil|Location2.X=4412.633mil|Location1.Y=3395.418mil|Location2.Y=3406.668mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4401.383mil|Location2.X=4412.633mil|Location1.Y=3395.418mil|Location2.Y=3406.668mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.843mil &lt; 10mil) Between Pad U3-4(4470mil,3375mil) on Top Layer And Track (4336.142mil,3408.465mil)(4607.795mil,3408.465mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.843mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTMC2JILHYTD1NIIDRHB2BXMVFXL0VFZWT3UA2J41VWSRJI15EWC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=5mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3129.804mil|Location2.X=3136.054mil|Location1.Y=4848.78mil|Location2.Y=4855.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3129.804mil|Location2.X=3136.054mil|Location1.Y=4848.78mil|Location2.Y=4855.03mil|Absolute=True">Silk To Silk Clearance Constraint: (3.452mil &lt; 5mil) Between Arc (3150mil,4691.102mil) on Top Overlay And Text "C6in" (3027.517mil,4856.107mil) on Top Overlay Silk Text to Silk Clearance [3.452mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3945.164mil|Location2.X=3951.414mil|Location1.Y=4847.045mil|Location2.Y=4853.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3945.164mil|Location2.X=3951.414mil|Location1.Y=4847.045mil|Location2.Y=4853.295mil|Absolute=True">Silk To Silk Clearance Constraint: (4.803mil &lt; 5mil) Between Arc (3975mil,4690mil) on Top Overlay And Text "C5in" (3842.517mil,4855.005mil) on Top Overlay Silk Text to Silk Clearance [4.803mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.829mil|Location2.X=1971.162mil|Location1.Y=4004.833mil|Location2.Y=4009.167mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.829mil|Location2.X=1971.162mil|Location1.Y=4004.833mil|Location2.Y=4009.167mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 5mil) Between Text "C1" (1954mil,4007mil) on Top Overlay And Track (1970.862mil,4008.547mil)(2099.138mil,4008.547mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2867.833mil|Location2.X=2872.166mil|Location1.Y=2335.328mil|Location2.Y=2339.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2867.833mil|Location2.X=2872.166mil|Location1.Y=2335.328mil|Location2.Y=2339.661mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 5mil) Between Text "D'2" (2904.989mil,2302.506mil) on Bottom Overlay And Track (2725.768mil,2342.483mil)(3009.232mil,2342.483mil) on Bottom Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2884.375mil|Location2.X=2890.625mil|Location1.Y=1614.63mil|Location2.Y=1620.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2884.375mil|Location2.X=2890.625mil|Location1.Y=1614.63mil|Location2.Y=1620.88mil|Absolute=True">Silk To Silk Clearance Constraint: (1.58mil &lt; 5mil) Between Text "D'3" (2922.489mil,1579.477mil) on Bottom Overlay And Track (2725.768mil,1622.483mil)(3009.232mil,1622.483mil) on Bottom Overlay Silk Text to Silk Clearance [1.58mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2866.537mil|Location2.X=2872.787mil|Location1.Y=2068.857mil|Location2.Y=2075.107mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2866.537mil|Location2.X=2872.787mil|Location1.Y=2068.857mil|Location2.Y=2075.107mil|Absolute=True">Silk To Silk Clearance Constraint: (4.336mil &lt; 5mil) Between Text "D'4" (2864.994mil,2071.982mil) on Top Overlay And Track (2875.768mil,2012.483mil)(2875.768mil,2201.459mil) on Top Overlay Silk Text to Silk Clearance [4.336mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3664.884mil|Location2.X=3671.134mil|Location1.Y=3996.883mil|Location2.Y=4003.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3664.884mil|Location2.X=3671.134mil|Location1.Y=3996.883mil|Location2.Y=4003.133mil|Absolute=True">Silk To Silk Clearance Constraint: (0.123mil &lt; 5mil) Between Text "D5" (3664.995mil,4000.008mil) on Top Overlay And Track (3672.008mil,3935.512mil)(3672.008mil,4124.488mil) on Top Overlay Silk Text to Silk Clearance [0.123mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3675.824mil|Location2.X=3682.074mil|Location1.Y=2388.851mil|Location2.Y=2395.101mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3675.824mil|Location2.X=3682.074mil|Location1.Y=2388.851mil|Location2.Y=2395.101mil|Absolute=True">Silk To Silk Clearance Constraint: (2.111mil &lt; 5mil) Between Text "Q1" (3682.505mil,2386.977mil) on Bottom Overlay And Track (3673.957mil,2343.979mil)(3673.957mil,2469.963mil) on Bottom Overlay Silk Text to Silk Clearance [2.111mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.817mil|Location2.X=2004.15mil|Location1.Y=4155.825mil|Location2.Y=4160.158mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.817mil|Location2.X=2004.15mil|Location1.Y=4155.825mil|Location2.Y=4160.158mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 5mil) Between Text "R2" (1952mil,4133mil) on Top Overlay And Track (1998.262mil,4159.488mil)(2033.542mil,4159.488mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3662.168mil|Location2.X=3668.418mil|Location1.Y=4346.882mil|Location2.Y=4353.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\cmutt\Documents\ECEN\ECEN 403_404\MPPT Solar Charge Controller\Charge ContollerV2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3662.168mil|Location2.X=3668.418mil|Location1.Y=4346.882mil|Location2.Y=4353.132mil|Absolute=True">Silk To Silk Clearance Constraint: (4.69mil &lt; 5mil) Between Text "U5" (3659.995mil,4345.008mil) on Top Overlay And Track (3671.575mil,4322.008mil)(3671.575mil,4447.992mil) on Top Overlay Silk Text to Silk Clearance [4.69mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
